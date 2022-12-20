@@ -1,20 +1,21 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "LinkedIn AdBlocker",
     "description": "Blocking ads.",
     "version": "0.0.1",
     "author": "<AUTHOR_NAME>",
-    "browser_action": {
+    "action": {
         "default_title": "LinkedIn AdBlocker"
     },
+    "host_permissions": [
+        "https://www.linkedin.com/"
+    ],
     "permissions": [
         "tabs",
         "webNavigation",
-        "https://www.linkedin.com/"
+        "scripting"
     ],
     "background": {
-        "scripts": [
-            "extension.js"
-        ]
+        "service_worker": "extension.js"
     }
 }

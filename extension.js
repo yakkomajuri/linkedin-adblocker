@@ -24,7 +24,7 @@ chrome.webNavigation.onCommitted.addListener(function (tab) {
                 if (domain.length < 1 || domain === null || domain === undefined) {
                     return;
                 } else if (domain == "linkedin.com") {
-                    runLinkedinScript();
+                    runLinkedinScript(tab.tabId);
                     return;
                 }
             } catch (err) {
@@ -36,10 +36,11 @@ chrome.webNavigation.onCommitted.addListener(function (tab) {
 });
 
 
-function runLinkedinScript() {
+function runLinkedinScript(tabId) {
     // Inject script from file into the webpage
-    chrome.tabs.executeScript({
-        file: 'linkedin.js'
+    chrome.scripting.executeScript({
+        target: {tabId},
+        files: ['linkedin.js']
     });
     return true;
 }
